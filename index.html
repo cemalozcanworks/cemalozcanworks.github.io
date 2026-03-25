@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CMWORKS</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAATlBMVEVHcEwIqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm5tffhRAAAAGXRSTlMABQkTh3cNHKr4KTpGUWCYMnDCadS88epZxFZPUAAAAKJJREFUGNNNTwcOxDAIg4Ts2aaL/3/0SHsLIRBY2AbgL3SPCpRSCIDSACI1Dde+Etq27j4CECHEjY9cAzM3tKklABnWjcPBZ0qNnDDtgrI3gb3VanKXgwXVK4frEUPPTPfe47NJ5yYKyofxMURm1uz116G9T93P8htyU8RF3fNwrtvuao8Ig5arkDFmkRxirJhScyp1yUstxTj5Ey1KWLBq1hdMPwexdgjpmQAAAABJRU5ErkJggg==">
+
+
+<style>
+body,h1,h2{font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+p {line-height: 2}
+.bgimg, .bgimg2 {
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+.bgimg {background-image: url("data:image/jpeg;base64,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")}
+.bgimg2 {background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoKCgoKCgsMDAsPEA4QDxYUExMUFiIYGhgaGCIzICUgICUgMy03LCksNy1RQDg4QFFeT0pPXnFlZXGPiI+7u/sBCgoKCgoKCwwMCw8QDhAPFhQTExQWIhgaGBoYIjMgJSAgJSAzLTcsKSw3LVFAODhAUV5PSk9ecWVlcY+Ij7u7+//CABEIAQABAAMBIgACEQEDEQH/xAAyAAEBAQEBAQEBAAAAAAAAAAAAAQIDBAUGBwEBAQEBAQEAAAAAAAAAAAAAAAECBAMF/9oADAMBAAIQAxAAAAD+Tq6vCUgAAoiiKJQAKIoi0zaIoiiUMNKioiiUACiKIolAoiiKCiKI0iLTmrSKiNCAKIoiiKBoy0MtIi2IoiiLSKMDSNVMqli0y0MtSI0ItIoiiW0y0I0MtiKiWjkKiiLTLQzaIolojQzbVy0iNVctDN0M3aMXZctU8q3WctDLQzaJQLVy1Yy0XOqIuoy1VjVMXaXN3TnrWped3T5zU9MLEUpFLGqZaplqyy2mbdS5a1GWtLltLG0suksutLi63L8dXt4xoZtQWmbbLLRNEGjSzRNE00ss1Uq3U1LbNLqyy7s18GnRyLEWwVNAqrLLU1KsqtStWmba1NNSzVrU1a1NWzWdXU2v5xHVw6RFBbKVE1dYsa1jS251NW50t1mzWrE10S51rWNS7vPU301z1NdN89Z1+cZdfztM00g1cpdsDesVdsWXo56a6MWXWuda6a46zem+Nl6641e15M773jV9F4azfgsuv5/Rzpu8x0YZvRgu9cqdGC9Lyq9XKx1vEvdxS9tcS9tcLL2157HpefTXovmsvy2XRxauC7Ypq4Lu4Rtzp0cx0cx1cqdHNHTXEvZyHZxp2cbHbXnL6L5y+Vh68+2KaZhtiy6uBtkaZGrgbYG2BtgbvMdHMdXIdbyR1chzkm/PSFrI0g0wTdwNzI0yNMjSZNsDbA2wNsDaQ2wMi5AAAAqCoLAAAAAAAAWD/8QAHRABAAIDAQEBAQAAAAAAAAAAEQABEBIgMEBQAv/aAAgBAQABAgD4z5j1PE+cyH1EPpDswQyZADgIQwB0Aep0HuZPM6MmTB0BCB8IAZAAqgwHiEDIAGoeR0AAAAB2ckACqAKo1ADkDABgAMECqNToAwHgBUKoCq9D0qqoKqqPeuCFUFVUqqhVVX0ViuKlfHWKzXNXUqV8FZq6tqNRVqVdXVxeXiuVq1VWrat4YscKqqqtWrVqxVVcOyqqrtttts7bKqqrVqrs7LsqrtttFYqquyqqq7LtttX9RViqsVVViqu22yqqqqqqqqqrtFVVVVVVVVVXpeVcuFXDh+V/JfwP/8QAHBABAAEFAQEAAAAAAAAAAAAAAUAAMFBgYSBR/9oACAEBAAM/AMU6GyDWOauWS8EUkFsowxG7LIx5NOcCaiaWyT0xu023BP3MFvtdrtdPXa74Yxlf/8QAHBEBAQEAAwEBAQAAAAAAAAAAEQAQASAwIRJA/9oACAECAQE/AI44/hPRnwZme7Mz4s+bjM+DjfJ1mZ7uMziTMzMzOM4zMzMzM6zM4zMzOMzOOvEuLc433xNIiMI6EYRERF+YiI4iIiIiIiIiI0iOY5iIwvkRF9vsYRGGkcRx2IiOxF//xAAfEQEBAQEBAQACAwEAAAAAAAABABECEBIgQCEwMVD/2gAIAQMBAT8A/wCTv62P9H8wWeZ5n4BZ4H4BAQFlkEEFkFngeYWQQQRzHMcxzfPuWZ5jBZBHMcxyxzHMcxzYWWQWQQQRzHMcxzHMckcxzZBZBBBZBBBBBBBAWGWQQWZBHgZER/keCQww+EeEQwww31HUdR1HUNsNtttttsdX1fUdR1fUdW2w2w5DbbbLDbbbfTfT+G25bbbaWw/rf//Z")}
+</style>
+</head>
+<body>
+
+<!-- Header / Home-->
+<header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
+  <div class="w3-display-middle w3-text-white w3-center">
+    <h4 class="w3-jumbo">Cemal Özcan Works</h4>
+    <h4>Since 2017</h4>
+    <!--<h2><b>2017</b></h2>-->
+  </div>
+</header>
+
+<!-- Navbar (sticky bottom) -->
+<!-- 
+<div class="w3-bottom w3-hide-small">
+  <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
+    <a href="#home" style="width:25%" class="w3-bar-item w3-button">Home</a>
+    <a href="#us" style="width:25%" class="w3-bar-item w3-button">Jane & John</a>
+    <a href="#wedding" style="width:25%" class="w3-bar-item w3-button">Wedding</a>
+    <a href="#rsvp" style="width:25%" class="w3-bar-item w3-button w3-hover-black">RSVP</a>
+  </div>
+</div>
+-->
+<!-- About / Jane And John -->
+<div class="w3-container w3-padding-64 w3-gray w3-grayscale-min" id="us">
+  <div class="w3-content">
+    <!--<h1 class="w3-center w3-text-grey"><b>.</b></h1>-->
+    <!--<img class="w3-round w3-grayscale-min" src="https://www.w3schools.com/w3css/img_nature.jpg" style="width:100%;margin:32px 0">-->
+    <p><i>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</i>
+    </p><br>
+    <p class="w3-center"><a href="#details" class="w3-button w3-black w3-round w3-padding-large w3-large">Details</a></p>
+  </div>
+</div>
+
+<!-- Background photo -->
+<div class="w3-display-container bgimg2">
+  <div class="w3-display-middle w3-text-white w3-center">
+    <h1 class="w3-jumbo">Lorem Ipsum</h1><br>
+    <h2>is simply dummy text</h2>
+  </div>
+</div>
+
+<!-- Wedding information -->
+<div class="w3-container w3-padding-64 w3-gray w3-grayscale-min w3-center" id="details">
+  <div class="w3-content">
+    <h1 class="w3-text-grey"><b>THE FOOTER</b></h1>
+    <!--<img class="w3-round-large w3-grayscale-min" src="wp2.jpg" style="width:100%;margin:64px 0">-->
+	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
+    <!--<div class="w3-row">
+      <div class="w3-half">
+        <h2>When</h2>
+        <p>Ceremony - 2:00pm</p>
+        <p>Dinner - 5:00pm</p>
+      </div>
+      <div class="w3-half">
+        <h2>Where</h2>
+        <p>Some place, an address</p>
+        <p>Some where, some address</p>
+      </div>-->
+    </div>
+  </div>
+</div>
+
+<!-- RSVP section -->
+<div class="w3-container w3-padding-64 w3-gray w3-center w3-wide" id="rsvp">
+  <h1>More information</h1>
+  <p class="w3-large">instagram</p>
+  <p class="w3-xlarge">
+    <!--<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px">RSVP</button>-->
+	<button onclick="window.location.href='https://www.instagram.com/cemalozcan000/'" style="padding:8px 60px">RSVP</button>
+  </p>
+</div>
+
+<!-- RSVP modal -->
+<!--
+<div id="id01" class="w3-modal">
+  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="padding:32px;max-width:600px">
+    <div class="w3-container w3-white w3-center">
+      <h1 class="w3-wide">CAN YOU COME?</h1>
+      <p>We really hope you can make it.</p>
+      <form>
+        <input class="w3-input w3-border" type="text" placeholder="Name(s)" name="name">
+      </form>
+      <p><i>Sincerely, John & Jane</i></p>
+      <div class="w3-row">
+        <div class="w3-half">
+          <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-block w3-green">Going</button>
+        </div>
+        <div class="w3-half">
+          <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-block w3-red">Can't come</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-16">
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+<!-- <div class="w3-hide-small" style="margin-bottom:32px"> </div>-->
+
+</body>
+</html>
