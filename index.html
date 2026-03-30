@@ -1,128 +1,167 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>CMWORKS</title>
+<title>Cemal Özcan</title>
+<!--<link rel="icon" type="image/png" href="favicon.png">-->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+<meta name="description" content="Cemal Özcan Independent Development Website"> <!--Sitenizin kısa tanımı burada olmalı. Arama sonuçlarında görüntülenir.-->
+<meta name="robots" content="index, follow">
+<meta name="author" content="Cemal Özcan">
+<meta name="keywords" content="HTML, CSS, JavaScript, cemal özcan, Independent Development Website">
+
+<link rel="stylesheet" href="w3.css">
 
 <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAATlBMVEVHcEwIqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm4Iqm5tffhRAAAAGXRSTlMABQkTh3cNHKr4KTpGUWCYMnDCadS88epZxFZPUAAAAKJJREFUGNNNTwcOxDAIg4Ts2aaL/3/0SHsLIRBY2AbgL3SPCpRSCIDSACI1Dde+Etq27j4CECHEjY9cAzM3tKklABnWjcPBZ0qNnDDtgrI3gb3VanKXgwXVK4frEUPPTPfe47NJ5yYKyofxMURm1uz116G9T93P8htyU8RF3fNwrtvuao8Ig5arkDFmkRxirJhScyp1yUstxTj5Ey1KWLBq1hdMPwexdgjpmQAAAABJRU5ErkJggg==">
 
-
 <style>
-body,h1,h2{font-family: "Raleway", sans-serif}
-body, html {height: 100%}
-p {line-height: 2}
-.bgimg, .bgimg2 {
-  min-height: 100%;
-  background-position: center;
-  background-size: cover;
+body {font-family: "Times New Roman", Georgia, Serif; background-color:black; color:white;}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display";
+  letter-spacing: 5px;
 }
-.bgimg {background-image: url("data:image/jpeg;base64,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")}
-.bgimg2 {background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoKCgoKCgsMDAsPEA4QDxYUExMUFiIYGhgaGCIzICUgICUgMy03LCksNy1RQDg4QFFeT0pPXnFlZXGPiI+7u/sBCgoKCgoKCwwMCw8QDhAPFhQTExQWIhgaGBoYIjMgJSAgJSAzLTcsKSw3LVFAODhAUV5PSk9ecWVlcY+Ij7u7+//CABEIAQABAAMBIgACEQEDEQH/xAAyAAEBAQEBAQEBAAAAAAAAAAAAAQIDBAUGBwEBAQEBAQEAAAAAAAAAAAAAAAECBAMF/9oADAMBAAIQAxAAAAD+Tq6vCUgAAoiiKJQAKIoi0zaIoiiUMNKioiiUACiKIolAoiiKCiKI0iLTmrSKiNCAKIoiiKBoy0MtIi2IoiiLSKMDSNVMqli0y0MtSI0ItIoiiW0y0I0MtiKiWjkKiiLTLQzaIolojQzbVy0iNVctDN0M3aMXZctU8q3WctDLQzaJQLVy1Yy0XOqIuoy1VjVMXaXN3TnrWped3T5zU9MLEUpFLGqZaplqyy2mbdS5a1GWtLltLG0suksutLi63L8dXt4xoZtQWmbbLLRNEGjSzRNE00ss1Uq3U1LbNLqyy7s18GnRyLEWwVNAqrLLU1KsqtStWmba1NNSzVrU1a1NWzWdXU2v5xHVw6RFBbKVE1dYsa1jS251NW50t1mzWrE10S51rWNS7vPU301z1NdN89Z1+cZdfztM00g1cpdsDesVdsWXo56a6MWXWuda6a46zem+Nl6641e15M773jV9F4azfgsuv5/Rzpu8x0YZvRgu9cqdGC9Lyq9XKx1vEvdxS9tcS9tcLL2157HpefTXovmsvy2XRxauC7Ypq4Lu4Rtzp0cx0cx1cqdHNHTXEvZyHZxp2cbHbXnL6L5y+Vh68+2KaZhtiy6uBtkaZGrgbYG2BtgbvMdHMdXIdbyR1chzkm/PSFrI0g0wTdwNzI0yNMjSZNsDbA2wNsDaQ2wMi5AAAAqCoLAAAAAAAAWD/8QAHRABAAIDAQEBAQAAAAAAAAAAEQABEBIgMEBQAv/aAAgBAQABAgD4z5j1PE+cyH1EPpDswQyZADgIQwB0Aep0HuZPM6MmTB0BCB8IAZAAqgwHiEDIAGoeR0AAAAB2ckACqAKo1ADkDABgAMECqNToAwHgBUKoCq9D0qqoKqqPeuCFUFVUqqhVVX0ViuKlfHWKzXNXUqV8FZq6tqNRVqVdXVxeXiuVq1VWrat4YscKqqqtWrVqxVVcOyqqrtttts7bKqqrVqrs7LsqrtttFYqquyqqq7LtttX9RViqsVVViqu22yqqqqqqqqqrtFVVVVVVVVVXpeVcuFXDh+V/JfwP/8QAHBABAAEFAQEAAAAAAAAAAAAAAUAAMFBgYSBR/9oACAEBAAM/AMU6GyDWOauWS8EUkFsowxG7LIx5NOcCaiaWyT0xu023BP3MFvtdrtdPXa74Yxlf/8QAHBEBAQEAAwEBAQAAAAAAAAAAEQAQASAwIRJA/9oACAECAQE/AI44/hPRnwZme7Mz4s+bjM+DjfJ1mZ7uMziTMzMzOM4zMzMzM6zM4zMzOMzOOvEuLc433xNIiMI6EYRERF+YiI4iIiIiIiIiI0iOY5iIwvkRF9vsYRGGkcRx2IiOxF//xAAfEQEBAQEBAQACAwEAAAAAAAABABECEBIgQCEwMVD/2gAIAQMBAT8A/wCTv62P9H8wWeZ5n4BZ4H4BAQFlkEEFkFngeYWQQQRzHMcxzfPuWZ5jBZBHMcxyxzHMcxzYWWQWQQQRzHMcxzHMckcxzZBZBBBZBBBBBBBAWGWQQWZBHgZER/keCQww+EeEQwww31HUdR1HUNsNtttttsdX1fUdR1fUdW2w2w5DbbbLDbbbfTfT+G25bbbaWw/rf//Z")}
 </style>
+<link rel="stylesheet" href="w3.css">
 </head>
 <body>
 
-<!-- Header / Home-->
-<header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
-  <div class="w3-display-middle w3-text-white w3-center">
-    <h4 class="w3-jumbo">Cemal Özcan Works</h4>
-    <h4>Since 2017</h4>
-    <!--<h2><b>2017</b></h2>-->
+<!-- Navbar (sit on top) -->
+<div class="w3-top" style="background-color:rgba(255, 255, 255, 1); opacity:0.5!important;">
+  <div class="w3-bar w3-white w3-padding w3-card" style="letter-spacing:4px;">
+    <a href="#home" class="w3-bar-item w3-button">Cemal Özcan<!-- <sup>&nbsp;Independent Development</sup>--></a>
+    <!-- Right-sided navbar links. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+	  <!--<a href="https://drive.google.com/file/d/1G3hqdHCP4bx_a2_UQnrftujl2tGK6G1g/view?usp=drive_link" class="w3-bar-item w3-button">RodenWorks</a>-->
+      <a href="#about" class="w3-bar-item w3-button" id="aboutbtn">Hakkımda</a>
+      <a href="#menu" class="w3-bar-item w3-button" id="menubtn">Detaylar</a>
+      <a href="#contact" class="w3-bar-item w3-button" id="contactbtn">İletişim</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
+  <img class="w3-image" src="place.jpg" alt="Hamburger Catering" width="1600" height="800">
+  <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+    <h4 class="w3-xxlarge">Showcase</h4>
   </div>
 </header>
 
-<!-- Navbar (sticky bottom) -->
-<!-- 
-<div class="w3-bottom w3-hide-small">
-  <div class="w3-bar w3-white w3-center w3-padding w3-opacity-min w3-hover-opacity-off">
-    <a href="#home" style="width:25%" class="w3-bar-item w3-button">Home</a>
-    <a href="#us" style="width:25%" class="w3-bar-item w3-button">Jane & John</a>
-    <a href="#wedding" style="width:25%" class="w3-bar-item w3-button">Wedding</a>
-    <a href="#rsvp" style="width:25%" class="w3-bar-item w3-button w3-hover-black">RSVP</a>
-  </div>
-</div>
--->
-<!-- About / Jane And John -->
-<div class="w3-container w3-padding-64 w3-gray w3-grayscale-min" id="us">
-  <div class="w3-content">
-    <!--<h1 class="w3-center w3-text-grey"><b>.</b></h1>-->
-    <!--<img class="w3-round w3-grayscale-min" src="https://www.w3schools.com/w3css/img_nature.jpg" style="width:100%;margin:32px 0">-->
-    <p><i>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</i>
-    </p><br>
-    <p class="w3-center"><a href="#details" class="w3-button w3-black w3-round w3-padding-large w3-large">Details</a></p>
-  </div>
-</div>
+<!-- Page content -->
+<div class="w3-content" style="max-width:1100px">
 
-<!-- Background photo -->
-<div class="w3-display-container bgimg2">
-  <div class="w3-display-middle w3-text-white w3-center">
-    <h1 class="w3-jumbo">Lorem Ipsum</h1><br>
-    <h2>is simply dummy text</h2>
-  </div>
-</div>
+  <!-- About Section -->
+  <div class="w3-row w3-padding-64" id="about">
+    <div class="w3-col m6 w3-padding-large w3-hide-small">
+     <img src="vr.jpg" class="w3-round w3-image w3-opacity-min" alt="Table Setting" width="600" height="750">
+    </div>
 
-<!-- Wedding information -->
-<div class="w3-container w3-padding-64 w3-gray w3-grayscale-min w3-center" id="details">
-  <div class="w3-content">
-    <h1 class="w3-text-grey"><b>THE FOOTER</b></h1>
-    <!--<img class="w3-round-large w3-grayscale-min" src="wp2.jpg" style="width:100%;margin:64px 0">-->
-	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>
-    <!--<div class="w3-row">
-      <div class="w3-half">
-        <h2>When</h2>
-        <p>Ceremony - 2:00pm</p>
-        <p>Dinner - 5:00pm</p>
-      </div>
-      <div class="w3-half">
-        <h2>Where</h2>
-        <p>Some place, an address</p>
-        <p>Some where, some address</p>
-      </div>-->
+    <div class="w3-col m6 w3-padding-large">
+      <h1 class="w3-center" id="headertext">Hakkımda</h1><br>
+      <!--<h5 class="w3-center">2017'den beri</h5>-->
+      <p class="w3-large" id="desc1">Bu site, yazılım geliştirme, oyun teknolojileri ve dijital üretim alanında yaptığım çalışmaları belgelemek, paylaşmak ve arşivlemek amacıyla oluşturulmuştur. İçeriklerin odak noktası; performans optimizasyonları, düşük donanım uyumluluğu, mobil uyumlu geliştirme teknikleri, Unity tabanlı oyun geliştirme ve özel araç/script sistemleridir. <!-- <span class="w3-tag w3-light-grey">seasonal</span> ingredients.--></p>
+      <p class="w3-large w3-text-grey w3-hide-medium" id="desc2">Bu blogda yer alan içeriklerin tamamı test edilmiş, uygulamaya dayalı, çoğunlukla gerçek projelerde kullanılacak sistemlerden oluşur. Doğrudan kullanıma uygun araçlar, çözümler ve kod örnekleri sunulur.</p>
+	  
+	  <p>Target Platforms</p>
+	  <ul>
+  <li>Android platform</li>
+  <li>Windows Platform</li>
+  <li>Linux Platform</li>
+</ul>
+	  
+	  <!--<p><a href="https://drive.google.com/file/d/1G3hqdHCP4bx_a2_UQnrftujl2tGK6G1g/view?usp=drive_link">RodenWorks</a></p>-->
     </div>
   </div>
-</div>
-
-<!-- RSVP section -->
-<div class="w3-container w3-padding-64 w3-gray w3-center w3-wide" id="rsvp">
-  <h1>More information</h1>
-  <p class="w3-large">instagram</p>
-  <p class="w3-xlarge">
-    <!--<button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-round w3-red w3-opacity w3-hover-opacity-off" style="padding:8px 60px">RSVP</button>-->
-	<button onclick="window.location.href='https://www.instagram.com/'" style="padding:8px 60px">RSVP</button>
-  </p>
-</div>
-
-<!-- RSVP modal -->
-<!--
-<div id="id01" class="w3-modal">
-  <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="padding:32px;max-width:600px">
-    <div class="w3-container w3-white w3-center">
-      <h1 class="w3-wide">CAN YOU COME?</h1>
-      <p>We really hope you can make it.</p>
-      <form>
-        <input class="w3-input w3-border" type="text" placeholder="Name(s)" name="name">
-      </form>
-      <p><i>Sincerely, John & Jane</i></p>
-      <div class="w3-row">
-        <div class="w3-half">
-          <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-block w3-green">Going</button>
-        </div>
-        <div class="w3-half">
-          <button onclick="document.getElementById('id01').style.display='none'" type="button" class="w3-button w3-block w3-red">Can't come</button>
-        </div>
-      </div>
+  
+  <hr>
+  
+  <!-- Menu Section -->
+  <div class="w3-row w3-padding-64" id="menu">
+    <div class="w3-col l6 w3-padding-large">
+      <h1 class="w3-center" id="menutext">Detaylar</h1><br>
+      <h4 id="header1">Unity</h4>
+      <p class="w3-text-grey" id="subdesc1">Mobil ve düşük sistemli cihazlar için optimize edilmiş özgür oyun mekanikleri, özel shader çözümleri, cross platform Windows,Linux,Android desteği sağlanır.</p><a href="https://www.reddit.com/r/Unity3D/comments/1rki4aj/opengl_20_max_gfx_test/">[Reddit] opengl2.0 maxgfx test</a><br>
+    
+      <h4 id="header2">Shader ve Grafik Sistemleri</h4>
+      <p class="w3-text-grey" id="subdesc2">Surface Shader, GrabPass, ve Chroma Key gibi efektler için özelleştirilmiş materyal sistemleri. Shader'lar düşük poligonlu sahneler için performans öncelikli olarak tasarlanır.</p><br>
+    <!--
+      <h4>Blender ve 3D Araçlar</h4>
+      <p class="w3-text-grey">Blender üzerinde otomasyon (Python script) kullanarak UV atlas oluşturma, materyal birleştirme, model optimize etme gibi işlemler. Ayrıca Unity uyumlu GLB/FBX export süreci üzerine pratik çözümler.</p><br>
+    -->
+      <h4 id="header3">Mobil Uyumluluk</h4>
+      <p class="w3-text-grey" id="subdesc3">Android 4.1 ve sonrası cihazlarda sorunsuz çalışan sistemlerin geliştirilmesi. Draw call optimizasyonu, tek layer/low-res reflection probe'lar, shader fallback sistemleri gibi konulara odaklanılır.</p><br>
+      <!--
+	  <h4>Multiplayer ve Networking</h4>
+      <p class="w3-text-grey">Unity'de Mirror tabanlı lokal çok oyunculu sistemler, mobil cihazlar için sadeleştirilmiş ağ mimarileri ve client-side performans sistemleri.</p>
+	  -->
+    </div>
+    
+    <div class="w3-col l6 w3-padding-large">
+      <img src="editor.jpg" class="w3-round w3-image" alt="Menu" style="width:100%">
+	  <br><br>
+	  <img src="editor2.jpg" class="w3-round w3-image" alt="Menu" style="width:100%">
     </div>
   </div>
-</div>-->
+
+  <hr>
+
+  <!-- Contact Section -->
+  <div class="w3-container w3-padding-64" id="contact">
+    <h1 id="contacttext">İletişim</h1> <br> 
+	
+	<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/7QCEUGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAGgcAigAYkZCTUQwYTAwMGFhODAxMDAwMDVjMDMwMDAwYTEwNDAwMDBjMTA0MDAwMGQ5MDQwMDAwNjUwNTAwMDAzNTA3MDAwMDhlMDcwMDAwYjgwNzAwMDBkNzA3MDAwMGFjMGEwMDAwAP/bAEMADAkJCwkIDAsKCw4NDA8THxQTERETJhsdFx8tKDAvLCgsKzI4SD0yNUQ2Kyw+VT9ESkxQUVAwPFheV05eSE9QTf/bAEMBDQ4OExATJRQUJU0zLDNNTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTU1NTf/AABEIAEAAQAMBIgACEQEDEQH/xAAbAAADAAMBAQAAAAAAAAAAAAADBAYCBQcAAf/EADAQAAICAgAEBAQEBwAAAAAAAAECAAMEEQUSITEGEyJRYXGBkRQyQVIVFiNCcqGx/8QAFwEBAQEBAAAAAAAAAAAAAAAAAQACA//EABcRAQEBAQAAAAAAAAAAAAAAAAABETH/2gAMAwEAAhEDEQA/AOagTMLPKIRV2YliF2YZMVn7CO4HDbcuwLXWzf4iUePwJ6V3dw+4qe5V9kfSITCcOdl2Nbnx+G2qN8ssW8NUZNHmYlz19dbPUA+zDuJO8SwM/hdvl5AZQfysp2rfIwWtPZjOncQBWNOWPUkmBYSL4gh6V9eoBI7ilUurJXmHMNj3il7wHAyDweyyuhqVA2jHu/xiOJ/Ebst1TLtSwflBJ9R9pS+HOOXZqWU5OOFCDSup/wBETc/hEWwXVoof4DUzrGtV5VyYiZ1qFbAOXJX9y/u+Y/5NPnqLse/By2V1B3W4OyvsfsQfvLpGF1TLag0Rph7iQeRy1ZDVto+Q5x33+oB9J+x1CCIG+tq7GR9bU6MVYR7OsFmTYy9t6ESebdA1jWOf6qfMRRekKjEdRBKfDy7kJqru5CT10nQfXvLngvFLXoFd7czoNc3uPeQGLxs0aautDsdRrcc/mS1nHlhat9DoSsZsdSpyUde4BHecv8TZFlHFs4bA8xgRo9+nSUPh/IdqLLcm4kN2EkfFjFuO3n+whSp9xqEmCdaJjAsYRjAsZpsMQgOvjAA/aZhoI5Q/K2wBoRkOjOLD013EQqYgGEU7PQ/SKV+NxzaqgARNTQcUzDl5JsLb16R8BFq7DoqT+kDboJ077kMDdhuCJnt7mO4F/9k=" width="45px" height="45px">
+    <p>Instagram</p> 
+	<p><a href="https://www.instagram.com/cemalozcan000/">https://www.instagram.com/cemalozcan000/</a></p>
+    <!--<p class="w3-text-blue-grey w3-large"><b>Adres bilgileri gizlilik sebebiyle mevcut olmayacaktır.</b></p>-->
+    <!--<p>Ayrıca x numaralı telefondan veya x e-posta adresinden bize ulaşabilir veya buradan bize mesaj gönderebilirsiniz:</p>-->
+    <form action="mailto:ornek@gmail.com?subject=Merhaba&body=bir mesaj iletin." target="_blank">
+      <!--<p><input class="w3-input w3-padding-16" type="text" placeholder="Name" required name="Name"></p>
+      <p><input class="w3-input w3-padding-16" type="number" placeholder="How many people" required name="People"></p>
+      <p><input class="w3-input w3-padding-16" type="datetime-local" placeholder="Date and time" required name="date" value="2020-11-16T20:00"></p>
+      <p><input class="w3-input w3-padding-16" type="text" placeholder="Message \ Special requirements" required name="Message"></p>-->
+      <!--<p><button class="w3-button w3-light-grey w3-section" type="submit">Gönder</button></p>-->
+    </form>
+  </div>
+  
+<!-- End page content -->
+</div>
 
 <!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+<footer class="w3-center w3-light-grey w3-padding-32" style="opacity:0.5!important;">
+  <i>Since 2017</i> <br> <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
 </footer>
-<!-- <div class="w3-hide-small" style="margin-bottom:32px"> </div>-->
+
+
+<script>
+if (navigator.language.startsWith("tr")){
+    console.log("Sistem dili Türkçe.");
+}
+else{
+    console.log("System language is not Turkish."); Change();
+}
+
+
+function Change(){
+  document.getElementById("aboutbtn").innerHTML = "About";
+  document.getElementById("menubtn").innerHTML = "Menu";
+  document.getElementById("contactbtn").innerHTML = "Contact";
+  
+  document.getElementById("headertext").innerHTML = "About";
+  document.getElementById("desc1").innerHTML = "This site was created to document, share, and archive my work in software development, game technologies, and digital production. Content focuses on performance optimizations, low-hardware compatibility, mobile-friendly development techniques, Unity-based game development, and custom tool/script systems.";
+  document.getElementById("desc2").innerHTML = "All content on this blog consists of tested, application-based systems, mostly used in real projects. It provides tools, solutions, and code examples ready for immediate use.";
+  
+  document.getElementById("menutext").innerHTML = "Menu";
+  document.getElementById("header1").innerHTML = "Unity Development";
+  document.getElementById("header2").innerHTML = "Shader and Graphics Systems";
+  document.getElementById("header3").innerHTML = "Mobile Compatibility";
+  
+  document.getElementById("subdesc1").innerHTML = "Optimized game mechanics for mobile and low-end devices, custom shader solutions, performance-friendly modeling, and tools like a city generator.";
+  document.getElementById("subdesc2").innerHTML = "Customized material systems for effects like Surface Shader, GrabPass, and Chroma Key. Shaders are designed with performance in mind for low-polygon scenes.";
+  document.getElementById("subdesc3").innerHTML = "Developing systems that run smoothly on Android 4.1 and later devices. Focusing on topics such as draw call optimization, single layer/low-res reflection probes, and shader fallback systems.";
+  document.getElementById("contacttext").innerHTML = "Contact";
+} //Change();
+</script>
 
 </body>
 </html>
