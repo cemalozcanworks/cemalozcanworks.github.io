@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cemal Özcan // Yazılım & Oyun Geliştirme</title>
+	<link rel="icon" href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAICAgICAQICAgIDAgIDAwYEAwMDAwcFBQQGCAcJCAgHCAgJCg0LCQoMCggICw8LDA0ODg8OCQsQERAOEQ0ODg7/2wBDAQIDAwMDAwcEBAcOCQgJDg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg4ODg7/wAARCAAgACADAREAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAABgkFBwgK/8QAKhAAAQMDBAEDAwUAAAAAAAAAAQIDBAUGEQAHEiETIjFxCEFhCRQyUYH/xAAZAQACAwEAAAAAAAAAAAAAAAAAAgEDBAX/xAAbEQADAAMBAQAAAAAAAAAAAAAAAQIDESExEv/aAAwDAQACEQMRAD8ASvEicykBJUT7Y1eWGg9uNiboveGag1SZYpIODLER9bQ+VNtqwPydTxeiVUz6H99bA1OwLNbrFds2fIoS0o41mlS0yIuVfx5Kx6eWMDIAJ6Bz1qU5fBZua4jLlYgQ0Sl/tWHWW/sHVAnH+aC0kLbjNP1mE2taGkl5KVrWCQASBnA+3ecaF6A/W0tirZ3A2J2rqti33WzRqRHUzU0Bh2A8+pKylSkttlPApOeOM5AT2e9Y3kc01SOY7c09roZb+WjGtWx7eSxUV1Gk1mK7EnCcnCZSvGlMgut4wfIjg6r+ltOLHajqMVfTexYe+nPndbEaPcdSjxXC9HZkOIaWpWeSQogHPwNbmdUGqHMTFnx3VJ9KFpWQPfog6UBoWxu/Vt7ZzGqo7flQmuFPhXTG4zpaWyewByWUZCjnOBjsaW4+1oyZMbrxF4/WJu7IvT9POxrnYiuUma7XQW2UvguIQ4y83zcCfYFI679z+dU4o+MjRXinWRoStVZHLknOTrSzeCMSUEdH0k9A6gCyqPXHGqRHZCA82V+TxrSOlD2I0yYFuX1u9dF4bUwqRUp3niMrLrgKuBJQAEp4jrA7I+dGkhFEy9ozNNmF5ZIxhXY0o5//2Q==">
+    <style>
+        /* ==========================================
+           1. TEMA VE RENK DEĞİŞKENLERİ (Sıfır Bağımlılık)
+           ========================================== */
+        :root {
+            --bg-main: #0d1117;
+            --bg-card: #161b22;
+            --bg-hover: #21262d;
+            --border-color: #30363d;
+            --accent: #2ea043;
+            --accent-hover: #3fb950;
+            --text-main: #c9d1d9;
+            --text-white: #ffffff;
+            --text-muted: #8b949e;
+            --font-mono: "Courier New", Courier, monospace;
+            --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --radius: 8px;
+        }
+
+        /* Basic Reset */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a { color: inherit; text-decoration: none; }
+        button, input { font-family: inherit; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-card); }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+
+        /* Layout Container */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+        /* ==========================================
+           2. HEADER & NAVBAR
+           ========================================== */
+        header {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(13, 17, 23, 0.01);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            height: 64px;
+        }
+        .header-content {
+            display: flex; align-items: center; justify-content: space-between;
+            height: 100%;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-box {
+            width: 38px; height: 38px; border-radius: var(--radius);
+            background: rgba(46, 160, 67, 0.1); border: 1px solid rgba(46, 160, 67, 0.4);
+            color: var(--accent); font-family: var(--font-mono); font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-title { font-family: var(--font-mono); font-weight: bold; font-size: 1.1rem; color: var(--text-white); }
+        .logo-title span { color: var(--accent); }
+        .logo-sub { display: block; font-size: 0.65rem; color: var(--text-muted); font-family: var(--font-mono); text-transform: uppercase; }
+
+        nav { display: flex; gap: 1.5rem; font-size: 0.9rem; }
+        nav a:hover { color: var(--accent); }
+
+        .search-input {
+            background: var(--bg-card); color: var(--text-white);
+            border: 1px solid var(--border-color); border-radius: var(--radius);
+            padding: 0.4rem 0.8rem; font-size: 0.8rem; font-family: var(--font-mono);
+            width: 180px; transition: border-color 0.2s;
+        }
+        .search-input:focus { outline: none; border-color: var(--accent); }
+
+        /* ==========================================
+           3. HERO SECTION
+           ========================================== */
+        .hero {
+            position: relative; padding: 3.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(to bottom, rgba(13, 17, 23, 0.4), rgba(13, 17, 23, 0.85)), 
+                        url('data:image/jpeg;base64,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') center/cover;
+        }
+        .badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.2rem 0.75rem; border-radius: 20px;
+            background: rgba(46, 160, 67, 0.15); border: 1px solid rgba(46, 160, 67, 0.3);
+            color: var(--accent); font-size: 0.75rem; font-family: var(--font-mono); margin-bottom: 1rem;
+        }
+        .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+        .hero h1 {
+            font-size: 2.2rem; font-family: var(--font-mono); color: var(--text-white);
+            margin-bottom: 1rem; line-height: 1.2; text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p { font-size: 1rem; color: #e6edf3; margin-bottom: 1.5rem; max-width: 650px; }
+
+        .btn-primary {
+            display: inline-block; background: var(--accent); color: #000;
+            font-weight: bold; padding: 0.6rem 1.2rem; border-radius: var(--radius);
+            font-family: var(--font-mono); font-size: 0.85rem; border: none; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-primary:hover { background: var(--accent-hover); }
+
+        /* ==========================================
+           4. MAIN CONTENT & GRID
+           ========================================== */
+        main { flex: 1; padding: 2.5rem 0; }
+        .main-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+
+        @media (min-width: 992px) {
+            .main-grid { grid-template-columns: 3fr 1fr; }
+        }
+
+        .section-header {
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem; margin-bottom: 1.5rem;
+        }
+        .section-title { font-family: var(--font-mono); color: var(--text-white); font-size: 1.1rem; }
+
+        .filters { display: flex; gap: 0.4rem; font-family: var(--font-mono); font-size: 0.75rem; }
+        .filter-btn {
+            background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-muted);
+            padding: 0.25rem 0.6rem; border-radius: 4px; cursor: pointer; transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: bold; }
+
+        .articles-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media (min-width: 640px) {
+            .articles-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: var(--radius); overflow: hidden; display: flex;
+            flex-direction: column; justify-content: space-between; transition: border-color 0.2s;
+        }
+        .card:hover { border-color: rgba(46, 160, 67, 0.5); }
+        .card-img { height: 160px; width: 100%; object-fit: cover; opacity: 0.85; border-bottom: 1px solid var(--border-color); }
+        .card-body { padding: 1.25rem; }
+        .card-meta { font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 0.5rem; }
+        .card-category { color: var(--accent); border: 1px solid rgba(46, 160, 67, 0.3); padding: 0.1rem 0.4rem; border-radius: 4px; }
+        .card-title { font-size: 1rem; color: var(--text-white); margin-bottom: 0.5rem; }
+        .card-summary { font-size: 0.8rem; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-footer { padding: 0.75rem 1.25rem; border-top: 1px solid rgba(48, 54, 61, 0.5); text-align: right; }
+        .read-more { font-size: 0.8rem; font-family: var(--font-mono); color: var(--accent); background: none; border: none; cursor: pointer; }
+        .read-more:hover { color: var(--accent-hover); text-decoration: underline; }
+
+        /* Sidebar Widgets */
+        .widget { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1.5rem; }
+        .widget-title { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-white); margin-bottom: 0.75rem; }
+        .author-box { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; }
+        .author-avatar { width: 38px; height: 38px; background: rgba(46, 160, 67, 0.2); color: var(--accent); font-family: var(--font-mono); font-weight: bold; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+
+        .newsletter-form input {
+            width: 100%; background: var(--bg-main); border: 1px solid var(--border-color);
+            color: var(--text-white); padding: 0.5rem; border-radius: var(--radius);
+            font-size: 0.8rem; font-family: var(--font-mono); margin-bottom: 0.5rem;
+        }
+
+        /* ==========================================
+           5. MODAL SYSTEM
+           ========================================== */
+        .modal-overlay {
+            position: fixed; inset: 0; z-index: 100;
+            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(4px);
+            display: none; align-items: center; justify-content: center; padding: 1rem;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            border-radius: var(--radius); max-width: 600px; width: 100%;
+            padding: 1.5rem; position: relative; max-height: 85vh; overflow-y: auto;
+        }
+        .close-btn { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; }
+        .close-btn:hover { color: var(--text-white); }
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .hero h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <div class="logo-box">&gt;_</div>
+                <div>
+                    <div class="logo-title">CEMAL <span>ÖZCAN</span></div>
+                    <span class="logo-sub">Yazılım ve Oyun İçerikleri</span>
+                </div>
+            </a>
+
+            <nav>
+                <a href="#" style="color: var(--text-white);">Anasayfa</a>
+                <a href="#articles">Makaleler</a>
+                <a href="#about">Hakkımda</a>
+            </nav>
+
+            <input type="text" id="searchInput" placeholder="Makale ara..." class="search-input">
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">
+                <span class="badge-dot"></span>
+                <span>Saf CSS & Yüksek Performans</span>
+            </div>
+            <h1>Düşük özellikli donanımlarda <br><span>OPTİMİZE</span> dünyalar oluşturmak.</h1>
+            <p>Unity mimarisi, C# bellek yönetimi ve matematiksel optimizasyon tekniklerine dair saf deneyimlerimi paylaşıyorum.</p>
+            <a href="#articles" class="btn-primary">// Makaleleri İncele ↓</a>
+			<br><br><br><br><br>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="main-grid">
+            
+            <!-- Articles Feed -->
+            <section id="articles">
+                <div class="section-header">
+                    <h2 class="section-title">Yazılar</h2>
+                    <div class="filters" id="filterButtons">
+                        <button class="filter-btn active" data-filter="all">Tümü</button>
+                        <button class="filter-btn" data-filter="Unity">Unity</button>
+                        <button class="filter-btn" data-filter="C#">C#</button>
+                        <button class="filter-btn" data-filter="Optimizasyon">Optimizasyon</button>
+                    </div>
+                </div>
+
+                <div id="articlesGrid" class="articles-grid"></div>
+            </section>
+
+            <!-- Sidebar -->
+            <aside>
+                <div id="about" class="widget">
+                    <div class="author-box">
+                        <div class="author-avatar">CÖ</div>
+                        <div>
+                            <h3 style="color: var(--text-white); font-size: 0.9rem;">Cemal Özcan</h3>
+                            <span style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono);">Oyun Geliştirici</span>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">
+                        Performans odaklı oyun mimarileri ve C# projeleri geliştiriyorum.
+                    </p>
+                </div>
+
+                <div class="widget">
+                    <h3 class="widget-title">Bülten</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Yeni içeriklerden haberdar olun.</p>
+                    <form onsubmit="" class="newsletter-form">
+                        <!--<input type="email" required placeholder="eposta@adresiniz.com">-->
+						<a href="https://www.youtube.com/@cemalozcan000">YouTube</a><br><a href="https://www.instagram.com/cemalozcan000/">Instagram</a><br><a href="https://github.com/cemalozcanworks">Github</a><br><a href="">&nbsp;</a>
+                        <button type="submit" class="btn-primary" style="width: 100%;" onclick="window.open('https://www.youtube.com/@cemalozcan000', '_blank')">Abone Ol</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Modal (Makale Detayı) -->
+    <div id="articleModal" class="modal-overlay">
+        <div class="modal-content">
+            <button onclick="closeModal()" class="close-btn">✕</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript (Makale Verisi & Mantık) -->
+    <script>
+        const ARTICLES = [
+            {
+                id: 1,
+                title: "Minecraft Hibrit Sunucu:",
+                date: "25 Ekim 2026",
+                category: "Minecraft",
+                image: "data:image/jpeg;base64,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",
+                summary: "Paper MC yazılımı üzerinden, EaglerCraft Web oyuncularını, Bedrock Oyuncularını, Tek bir Sunucuda oynanabilir duruma Getiriyoruz.",
+                content: `ViaVersion, GeyserMC ve EaglerXPaper eklentilerini kullanarak, proxy kullanmadan, üç platformda (Java PC, Bedrock, Eagler) Paper 26.2 localhost sunucumuza eş zamanlı olarak başarıyla bağlandık. Kaynaklar: <a href="https://github.com/PlanetDogeCodes/EaglerXPaper"><u>github.com/PlanetDogeCodes/EaglerXPaper</u></a>  <a href="https://modrinth.com/plugin/geyser"><u>modrinth.com/plugin/geyser</u></a>  <a href="https://modrinth.com/plugin/viaversion"><u>modrinth.com/plugin/viaversion</u></a>`
+            },
+            {
+                id: 2,
+                title: "Minecraft Kolay tarifler",
+                date: "17 Eylül 2026",
+                category: "Minecraft",
+                image: "data:image/jpeg;base64,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",
+                summary: "Crafting Generator Web sitesi ile kolay tarifler hazırladık",
+                content: `Bu kolay tarifler ile elytra bile craftlanabilir olacaktır. java ve bedrock için mevcuttur. <a href="https://github.com/cemalozcanworks/MinecraftMods"><u>Kaynak</u></a>`
+            },
+            {
+                id: 3,
+                title: "Unity Geliştirmeleri: FPS Oyunu:",
+                date: "12 Eylül 2026",
+                category: "Unity",
+                image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAEkyNkA2LUlAO0BSTUlWbbZ2bWRkbd6fqIS2/+j////o/vr///////////r+////////////////////////////wAALCACAAOQBAREA/8QAGQABAQEBAQEAAAAAAAAAAAAAAAECBAMF/8QAMRABAAICAQMCAwYFBQAAAAAAAAECAxEEEiExQXETMlEFFDM0crEiYYGh0TVSYpHB/9oACAEBAAA/APeIa0aXS6XQKAKCAGkNJo0mk0mk01pdLpRRQAAABBBBNJppRRQAAAAAEQRNNCqAAAAAAAgiKqgAAAAAAAgiqAAOfJy8WOZjczMekQ578+0/JWI9+7fCz3yZLVvbfbcO0AAAAEBQAYveuOk2tOohyU5ebLk6cda9/r6PSvBxx3vNrS5uRFbZoxYaxGu3b1lKR935kRM+J0+oxW9bTqLRMx9JW1q1jdpiI/mnxKbiOqNz47+UnPirOpvWJ92eRHVh7Xiv/KZeXVGPhzWctbWmJ1MW8s8DJ/Bfrv3895ddb1v8ton2ktetPmtFfeVrMWjcTuPrCgICgDN7RSs2tOoh8zkZ5z3+lY8Q6MGfj4aaiZ36zry1k5uP4dvhzM29OzHAw+ctvaDm4ptmpNfNuztjtHdwcL83k9p/d7faH5eP1f5c3I3vBrz0Rp724NIxzq09UR5c9bzPDvWfFbRp6VxVvwYvO91idf8Aa8HFW8Ted7idf2Z40zg5c458T2/wcu05uTGOvp2/q76VilYrHiI00AIKAM2rFqzFo3Evm8njzhtuO9J8S9+Pj4+avyatHmNy3k4eOcc9FdW9O7y4OXptOK3r42vOyTXLjis9693bHjv5fOpf7ty79cTrvC8vkVy0itInUTuZlM34nH/RV9C/yW9ny6flcn6o/wDXVj/02faf3Ps78K36mOfSa5K5a+v7nApN8lstvT93eACCgAzasWrNbRuJcn3O9MnVivEa8bWvOiJ6ctJrMdp05+TNJyRlxW8+f5SUtPI5dZmPp/Z9Ri+KmT56xKRhxxXpika+mlnFSZjdInp8dvDWt9nn8DFqa9FdS1GOkU6OmOn6FMdccapERDk+0Mm+nFHvLpwY/hYa19fX3eoAIKAAPHJxsWSZm1e8+sOe/wBn/wCy/wDSWuJx74strXiPGodgAAAAIIqgAAAAAAAggKoAAAAAACCIKKKAAAAAAiCIm1XaiigAAACCCCJtmJa2bXa7XYKAoCACCbNptNptNv/Z",
+                summary: "Crowbar, Blender Source tools, araçlarıyla, Counter Strike Source silahlarını unity oyunumuza taşıdık, bu sayede eski telefonlarda bile fps oyununu deneyimleyebilirsiniz.",
+                content: `Crowbar, Blender Source tools, araçlarıyla, Counter Strike Source silahlarını unity oyunumuza taşıdık, bu sayede eski telefonlarda bile fps oyununu deneyimleyebilirsiniz.`
+            },
+			{
+                id: 3,
+                title: "Unity Geliştirmeleri: Araba Oyunu:",
+                date: "12 Eylül 2026",
+                category: "Unity",
+                image: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAEkyNkA2LUlAO0BSTUlWbbZ2bWRkbd6fqIS2/+j////o/vr///////////r+////////////////////////////wAALCACAAOQBAREA/8QAGQABAQEBAQEAAAAAAAAAAAAAAAECBAMF/8QAMRABAAICAQMCAwYFBQAAAAAAAAECAxEEEiExQXETMlEFFDM0crEiYYGh0TVSYpHB/9oACAEBAAA/APeIa0aXS6XQKAKCAGkNJo0mk0mk01pdLpRRQAAABBBBNJppRRQAAAAAEQRNNCqAAAAAAAgiKqgAAAAAAAgiqAAOfJy8WOZjczMekQ578+0/JWI9+7fCz3yZLVvbfbcO0AAAAEBQAYveuOk2tOohyU5ebLk6cda9/r6PSvBxx3vNrS5uRFbZoxYaxGu3b1lKR935kRM+J0+oxW9bTqLRMx9JW1q1jdpiI/mnxKbiOqNz47+UnPirOpvWJ92eRHVh7Xiv/KZeXVGPhzWctbWmJ1MW8s8DJ/Bfrv3895ddb1v8ton2ktetPmtFfeVrMWjcTuPrCgICgDN7RSs2tOoh8zkZ5z3+lY8Q6MGfj4aaiZ36zry1k5uP4dvhzM29OzHAw+ctvaDm4ptmpNfNuztjtHdwcL83k9p/d7faH5eP1f5c3I3vBrz0Rp724NIxzq09UR5c9bzPDvWfFbRp6VxVvwYvO91idf8Aa8HFW8Ted7idf2Z40zg5c458T2/wcu05uTGOvp2/q76VilYrHiI00AIKAM2rFqzFo3Evm8njzhtuO9J8S9+Pj4+avyatHmNy3k4eOcc9FdW9O7y4OXptOK3r42vOyTXLjis9693bHjv5fOpf7ty79cTrvC8vkVy0itInUTuZlM34nH/RV9C/yW9ny6flcn6o/wDXVj/02faf3Ps78K36mOfSa5K5a+v7nApN8lstvT93eACCgAzasWrNbRuJcn3O9MnVivEa8bWvOiJ6ctJrMdp05+TNJyRlxW8+f5SUtPI5dZmPp/Z9Ri+KmT56xKRhxxXpika+mlnFSZjdInp8dvDWt9nn8DFqa9FdS1GOkU6OmOn6FMdccapERDk+0Mm+nFHvLpwY/hYa19fX3eoAIKAAPHJxsWSZm1e8+sOe/wBn/wCy/wDSWuJx74strXiPGodgAAAAIIqgAAAAAAAggKoAAAAAACCIKKKAAAAAAiCIm1XaiigAAACCCCJtmJa2bXa7XYKAoCACCbNptNptNv/Z",
+                summary: "Need For Speed tarzında, eski donanımlar için optimize edilmiş, basit araba oyunumuz.",
+                content: `Need For Speed tarzında, eski donanımlar için optimize edilmiş, basit araba oyunumuz.`
+            }
+        ];
+
+        const grid = document.getElementById('articlesGrid');
+
+        function renderArticles(list) {
+            grid.innerHTML = '';
+            if (list.length === 0) {
+                grid.innerHTML = `<p style="color: var(--text-muted); font-family: var(--font-mono);">Makale bulunamadı.</p>`;
+                return;
+            }
+            list.forEach(item => {
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div>
+                        <img src="${item.image}" alt="${item.title}" class="card-img">
+                        <div class="card-body">
+                            <div class="card-meta">
+                                <span class="card-category">${item.category}</span> • <span>${item.date}</span>
+                            </div>
+                            <h3 class="card-title">${item.title}</h3>
+                            <p class="card-summary">${item.summary}</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button onclick="openModal(${item.id})" class="read-more">Devamını Oku →</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filtreleme
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                const filter = e.target.getAttribute('data-filter');
+                if (filter === 'all') renderArticles(ARTICLES);
+                else renderArticles(ARTICLES.filter(a => a.category === filter));
+            });
+        });
+
+        // Arama
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            renderArticles(ARTICLES.filter(a => 
+                a.title.toLowerCase().includes(query) || a.summary.toLowerCase().includes(query)
+            ));
+        });
+
+        // Modal Gösterimi
+        function openModal(id) {
+            const item = ARTICLES.find(a => a.id === id);
+            if (!item) return;
+            const content = document.getElementById('modalContent');
+            content.innerHTML = `
+                <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--accent); margin-bottom:0.5rem;">
+                    ${item.category} • ${item.date}
+                </div>
+                <h2 style="color:var(--text-white); font-family:var(--font-mono); margin-bottom:1rem; font-size:1.3rem;">${item.title}</h2>
+                <div style="font-size:0.9rem; color:var(--text-main); white-space:pre-line; line-height:1.7;">
+                    ${item.content}
+                </div>
+            `;
+            document.getElementById('articleModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('articleModal').classList.remove('active');
+        }
+
+        function handleSubscribe(e) {
+            e.preventDefault();
+            alert("Bültene kaydınız alındı!");
+            e.target.reset();
+        }
+
+        // Sayfa yüklendiğinde makaleleri getir
+        renderArticles(ARTICLES);
+    </script>
+</body>
+</html>
